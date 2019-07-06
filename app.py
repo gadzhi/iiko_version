@@ -15,4 +15,4 @@ def my_form_post():
     result = requests.get(url).content
     return Response(result, mimetype='text/xml')
 
-app.run()
+app.run(host='0.0.0.0', debug=False)
