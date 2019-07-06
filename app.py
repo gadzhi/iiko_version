@@ -10,8 +10,9 @@ def my_form():
 @app.route('/', methods=['POST'])
 def my_form_post():
     text = request.form['text']
+    port = request.form['port']
     processed_text = text.upper()
-    url = "http://" + text + "/resto/get_server_info.jsp?encoding=UTF-8"
+    url = "http://" + text + ":" + port + "/resto/get_server_info.jsp?encoding=UTF-8"
     result = requests.get(url).content
     return Response(result, mimetype='text/xml')
 
