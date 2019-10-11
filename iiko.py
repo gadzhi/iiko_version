@@ -14,17 +14,18 @@ def my_form_post():
     text = request.form['text']
     port = request.form['port']
     processed_text = text.upper()
+    tvalue = str(request.form['Type'])
     if request.form['action'] == 'Status':
-        url = text + ":" + port + "/resto/get_server_info.jsp?encoding=UTF-8"
+        url = tvalue + "://" + text + ":" + port + "/resto/get_server_info.jsp?encoding=UTF-8"
         result = requests.get(url).content
         return Response(result, mimetype='text/xml')
     elif request.form['action'] == 'CRMID':
-        url = text + ":" + port + "/resto/service/evoservices/testConnection.jsp"
+        url = tvalue + "://" + text + ":" + port + "/resto/service/evoservices/testConnection.jsp"
         result = requests.get(url).content
         return Response(result)
     else:
         pass  # unknown
 
-#app.run(host='0.0.0.0', debug=False)
+app.run(host='0.0.0.0', debug=False)
 
 
