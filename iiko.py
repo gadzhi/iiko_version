@@ -20,12 +20,12 @@ def my_form_post():
         result = requests.get(url).content
         return Response(result, mimetype='text/xml')
     elif request.form['action'] == 'CRMID':
-        url = tvalue + "://" + text + ":" + port + "/resto/service/evoservices/testConnection.jsp"
+        url = tvalue + "://"    + text + ":" + port + "/resto/service/evoservices/testConnection.jsp"
         result = requests.get(url).content
         return Response(result)
     else:
         pass  # unknown
 
-app.run(host='0.0.0.0', debug=False)
+app.run(host='0.0.0.0', port=8080, debug=False)
 
 
